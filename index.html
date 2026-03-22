@@ -1,0 +1,1013 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Anselmi â FormulÃ¡rio de EspecificaÃ§Ãµes</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: #f5f3f0;
+    color: #2E4057;
+    min-height: 100vh;
+  }
+
+  .header {
+    background: #2E4057;
+    padding: 32px 0 28px;
+    text-align: center;
+  }
+  .header h1 {
+    font-size: 22px;
+    font-weight: 300;
+    letter-spacing: 6px;
+    color: #fff;
+    margin-bottom: 6px;
+  }
+  .header p {
+    font-size: 13px;
+    color: #C9A96E;
+    letter-spacing: 1px;
+  }
+
+  .container {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 32px 20px 60px;
+  }
+
+  .intro {
+    background: #fff;
+    border-radius: 12px;
+    padding: 24px 28px;
+    margin-bottom: 28px;
+    border-left: 4px solid #C9A96E;
+  }
+  .intro p {
+    font-size: 14px;
+    line-height: 1.6;
+    color: #555;
+  }
+
+  .section {
+    background: #fff;
+    border-radius: 12px;
+    padding: 28px;
+    margin-bottom: 20px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+  }
+  .section-title {
+    font-size: 13px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: #C9A96E;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #eee;
+  }
+
+  .field { margin-bottom: 18px; }
+  .field:last-child { margin-bottom: 0; }
+
+  label {
+    display: block;
+    font-size: 13px;
+    font-weight: 500;
+    color: #2E4057;
+    margin-bottom: 6px;
+  }
+  label .hint {
+    font-weight: 300;
+    color: #999;
+    font-size: 12px;
+  }
+  label .required {
+    color: #C9A96E;
+    font-weight: 600;
+  }
+
+  input[type="text"], textarea, select {
+    width: 100%;
+    padding: 10px 14px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    color: #333;
+    background: #fafafa;
+    transition: border-color 0.2s;
+  }
+  input:focus, textarea:focus, select:focus {
+    outline: none;
+    border-color: #C9A96E;
+    background: #fff;
+  }
+  textarea { resize: vertical; min-height: 60px; }
+  select { cursor: pointer; }
+
+  .row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+
+  .chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 6px;
+  }
+  .chip {
+    padding: 6px 14px;
+    border: 1px solid #ddd;
+    border-radius: 20px;
+    font-size: 13px;
+    cursor: pointer;
+    background: #fafafa;
+    transition: all 0.2s;
+    user-select: none;
+  }
+  .chip:hover { border-color: #C9A96E; }
+  .chip.selected {
+    background: #2E4057;
+    color: #fff;
+    border-color: #2E4057;
+  }
+
+  .actions {
+    display: flex;
+    gap: 12px;
+    margin-top: 32px;
+  }
+
+  .btn {
+    flex: 1;
+    padding: 14px 24px;
+    border: none;
+    border-radius: 10px;
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .btn-primary {
+    background: #2E4057;
+    color: #fff;
+  }
+  .btn-primary:hover { background: #3a5170; }
+  .btn-primary:disabled {
+    background: #999;
+    cursor: not-allowed;
+  }
+  .btn-secondary {
+    background: #fff;
+    color: #2E4057;
+    border: 1px solid #ddd;
+  }
+  .btn-secondary:hover { background: #f5f3f0; }
+
+  .output-area {
+    display: none;
+    background: #fff;
+    border-radius: 12px;
+    padding: 28px;
+    margin-top: 20px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+  }
+  .output-area.visible { display: block; }
+  .output-area pre {
+    background: #f8f7f5;
+    padding: 20px;
+    border-radius: 8px;
+    font-size: 13px;
+    line-height: 1.7;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    color: #333;
+    border: 1px solid #eee;
+  }
+  .copy-btn {
+    display: inline-block;
+    margin-top: 12px;
+    padding: 10px 20px;
+    background: #C9A96E;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .copy-btn:hover { background: #b89655; }
+  .copy-btn.copied { background: #4CAF50; }
+
+  .mode-toggle {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6px;
+    margin-bottom: 20px;
+    background: #f0eeeb;
+    border-radius: 10px;
+    padding: 6px;
+  }
+  .mode-btn {
+    padding: 12px 8px;
+    border: none;
+    border-radius: 8px;
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    background: transparent;
+    color: #888;
+    transition: all 0.2s;
+    text-align: center;
+    line-height: 1.3;
+  }
+  .mode-btn.active {
+    background: #fff;
+    color: #2E4057;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+  }
+  .mode-btn .mode-badge {
+    display: inline-block;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    padding: 2px 6px;
+    border-radius: 4px;
+    margin-left: 4px;
+    vertical-align: middle;
+  }
+  .mode-badge.seo {
+    background: #C9A96E;
+    color: #fff;
+  }
+
+  .counter {
+    font-size: 11px;
+    color: #999;
+    margin-top: 4px;
+  }
+
+  .photo-drop {
+    border: 2px dashed #ddd;
+    border-radius: 12px;
+    padding: 32px 20px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.2s;
+    background: #fafafa;
+    position: relative;
+  }
+  .photo-drop:hover, .photo-drop.dragover {
+    border-color: #C9A96E;
+    background: #fdf9f3;
+  }
+  .photo-drop svg {
+    display: block;
+    margin: 0 auto 12px;
+    opacity: 0.35;
+  }
+  .photo-drop .drop-text {
+    font-size: 14px;
+    color: #888;
+    line-height: 1.5;
+  }
+  .photo-drop .drop-text strong {
+    color: #C9A96E;
+  }
+  .photo-drop .drop-hint {
+    font-size: 12px;
+    color: #aaa;
+    margin-top: 6px;
+  }
+
+  .photo-preview-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    gap: 12px;
+    margin-top: 16px;
+  }
+  .photo-card {
+    position: relative;
+    border-radius: 10px;
+    overflow: hidden;
+    border: 1px solid #eee;
+    background: #fff;
+  }
+  .photo-card img {
+    width: 100%;
+    height: 140px;
+    object-fit: cover;
+    display: block;
+  }
+  .photo-card .photo-name {
+    font-size: 11px;
+    color: #888;
+    padding: 6px 8px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .photo-card .photo-remove {
+    position: absolute;
+    top: 6px;
+    right: 6px;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background: rgba(0,0,0,0.5);
+    color: #fff;
+    border: none;
+    font-size: 14px;
+    line-height: 24px;
+    text-align: center;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+  .photo-card .photo-remove:hover { background: rgba(200,50,50,0.8); }
+
+  /* Toast / success message */
+  .toast {
+    display: none;
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0,0,0,0.5);
+    z-index: 1000;
+    justify-content: center;
+    align-items: center;
+  }
+  .toast.visible { display: flex; }
+  .toast-box {
+    background: #fff;
+    border-radius: 16px;
+    padding: 40px 48px;
+    text-align: center;
+    max-width: 420px;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.2);
+    animation: slideUp 0.3s ease;
+  }
+  @keyframes slideUp {
+    from { transform: translateY(20px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+  }
+  .toast-icon {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background: #e8f5e9;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 16px;
+  }
+  .toast-icon svg { stroke: #4CAF50; }
+  .toast-box h3 {
+    font-size: 18px;
+    font-weight: 600;
+    color: #2E4057;
+    margin-bottom: 8px;
+  }
+  .toast-box p {
+    font-size: 14px;
+    color: #777;
+    line-height: 1.5;
+    margin-bottom: 20px;
+  }
+  .toast-close {
+    padding: 10px 28px;
+    background: #2E4057;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+  }
+  .toast-close:hover { background: #3a5170; }
+
+  /* Spinner */
+  .spinner {
+    display: inline-block;
+    width: 18px;
+    height: 18px;
+    border: 2px solid rgba(255,255,255,0.3);
+    border-top-color: #fff;
+    border-radius: 50%;
+    animation: spin 0.6s linear infinite;
+    vertical-align: middle;
+    margin-right: 8px;
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  /* Preenchido por (person) */
+  .person-field {
+    background: #fdf9f3;
+    border: 1px solid #e8dcc8;
+    border-radius: 8px;
+    padding: 14px 16px;
+    margin-bottom: 20px;
+  }
+  .person-field label {
+    color: #C9A96E;
+    font-weight: 600;
+  }
+
+  @media (max-width: 600px) {
+    .row { grid-template-columns: 1fr; }
+    .actions { flex-direction: column; }
+    .toast-box { margin: 20px; padding: 32px 24px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>ANSELMI</h1>
+  <p>FormulÃ¡rio de EspecificaÃ§Ãµes de Produto</p>
+</div>
+
+<div class="container">
+
+  <div class="intro">
+    <p>Preencha as especificaÃ§Ãµes da peÃ§a abaixo. Os dados serÃ£o salvos automaticamente no banco de dados da equipe. VocÃª tambÃ©m pode gerar um prompt formatado para colar no Claude.</p>
+  </div>
+
+  <!-- QUEM ESTÃ PREENCHENDO -->
+  <div class="section">
+    <div class="person-field">
+      <label>Preenchido por <span class="required">*</span></label>
+      <input type="text" id="preenchido-por" placeholder="Seu nome" style="margin-top:6px;">
+    </div>
+  </div>
+
+  <!-- MODE SELECTOR -->
+  <div class="section">
+    <div class="section-title">Modo de DescriÃ§Ã£o</div>
+    <div class="mode-toggle">
+      <button class="mode-btn active" onclick="setMode('editorial', this)">Editorial (COS)</button>
+      <button class="mode-btn" onclick="setMode('tecnico', this)">TÃ©cnico (Zara)</button>
+      <button class="mode-btn" onclick="setMode('completo', this)">Completo <span class="mode-badge seo">SEO</span></button>
+      <button class="mode-btn" onclick="setMode('tecnico-seo', this)">TÃ©cnico + SEO <span class="mode-badge seo">SEO</span></button>
+    </div>
+    <p style="font-size:12px; color:#888; line-height:1.5;" id="mode-desc">
+      ParÃ¡grafo editorial sensorial + linha tÃ©cnica + bullets. Tom de curadoria COS.
+    </p>
+  </div>
+
+  <!-- IDENTIFICAÃÃO -->
+  <div class="section">
+    <div class="section-title">IdentificaÃ§Ã£o</div>
+    <div class="row">
+      <div class="field">
+        <label>Nome da PeÃ§a <span class="required">*</span></label>
+        <input type="text" id="nome" placeholder="Ex: Cardigan Savoia">
+      </div>
+      <div class="field">
+        <label>CÃ³digo / ReferÃªncia</label>
+        <input type="text" id="codigo" placeholder="Ex: 16164">
+      </div>
+    </div>
+    <div class="row">
+      <div class="field">
+        <label>Tipo da PeÃ§a <span class="required">*</span></label>
+        <select id="tipo">
+          <option value="">Selecione...</option>
+          <option>Cardigan</option>
+          <option>SuÃ©ter</option>
+          <option>Blusa</option>
+          <option>Maxipull</option>
+          <option>Vestido</option>
+          <option>Saia</option>
+          <option>CalÃ§a</option>
+          <option>Colete</option>
+          <option>Pelerine</option>
+          <option>Capa</option>
+          <option>Regata</option>
+          <option>Top</option>
+          <option>Casaco</option>
+          <option>Outro</option>
+        </select>
+      </div>
+      <div class="field">
+        <label>ColeÃ§Ã£o <span class="hint">(opcional)</span></label>
+        <input type="text" id="colecao" placeholder="Ex: Maestra, Inverno 2026">
+      </div>
+    </div>
+  </div>
+
+  <!-- COR & MATERIAL -->
+  <div class="section">
+    <div class="section-title">Cor & Material</div>
+    <div class="row">
+      <div class="field">
+        <label>Cor Principal</label>
+        <input type="text" id="cor" placeholder="Ex: off-white, preto, ocre">
+      </div>
+      <div class="field">
+        <label>Cores DisponÃ­veis <span class="hint">(opcional)</span></label>
+        <input type="text" id="cores" placeholder="Ex: preto, cru, verde">
+      </div>
+    </div>
+    <div class="field">
+      <label>ComposiÃ§Ã£o <span class="required">*</span></label>
+      <input type="text" id="composicao" placeholder="Ex: 70% algodÃ£o, 30% poliamida">
+    </div>
+    <div class="field">
+      <label>Fio Especial <span class="hint">(se aplicÃ¡vel)</span></label>
+      <input type="text" id="fio" placeholder="Ex: Fio Londres, Fio Italiano">
+    </div>
+  </div>
+
+  <!-- DESIGN & CONSTRUÃÃO -->
+  <div class="section">
+    <div class="section-title">Design & ConstruÃ§Ã£o</div>
+
+    <div class="field">
+      <label>Gola / Decote</label>
+      <div class="chips" id="gola-chips">
+        <span class="chip" data-val="Gola alta">Gola alta</span>
+        <span class="chip" data-val="Gola chaminÃ©">Gola chaminÃ©</span>
+        <span class="chip" data-val="Gola rolÃª">Gola rolÃª</span>
+        <span class="chip" data-val="Gola polo">Gola polo</span>
+        <span class="chip" data-val="Decote V">Decote V</span>
+        <span class="chip" data-val="Decote careca">Decote careca</span>
+        <span class="chip" data-val="Decote redondo">Decote redondo</span>
+        <span class="chip" data-val="Decote quadrado">Decote quadrado</span>
+        <span class="chip" data-val="Decote ombro a ombro">Ombro a ombro</span>
+        <span class="chip" data-val="Decote canoa">Decote canoa</span>
+      </div>
+      <input type="text" id="gola-custom" placeholder="Outro (digitar)" style="margin-top:8px;">
+    </div>
+
+    <div class="field">
+      <label>Manga</label>
+      <div class="chips" id="manga-chips">
+        <span class="chip" data-val="Manga longa">Longa</span>
+        <span class="chip" data-val="Manga curta">Curta</span>
+        <span class="chip" data-val="Manga 3/4">3/4</span>
+        <span class="chip" data-val="Manga morcego">Morcego</span>
+        <span class="chip" data-val="Manga bufante">Bufante</span>
+        <span class="chip" data-val="Manga raglan">Raglan</span>
+        <span class="chip" data-val="Manga kimono">Kimono</span>
+        <span class="chip" data-val="Manga balloon">Balloon</span>
+        <span class="chip" data-val="Sem manga">Sem manga</span>
+        <span class="chip" data-val="AlÃ§a">AlÃ§a</span>
+      </div>
+    </div>
+
+    <div class="field">
+      <label>Ponto de TricÃ´</label>
+      <div class="chips" id="ponto-chips">
+        <span class="chip" data-val="Ponto pÃ©rola">PÃ©rola</span>
+        <span class="chip" data-val="Canelado">Canelado</span>
+        <span class="chip" data-val="Meia-malha">Meia-malha</span>
+        <span class="chip" data-val="Ponto links">Links</span>
+        <span class="chip" data-val="TricÃ´ 3D">3D</span>
+        <span class="chip" data-val="Malha cheia">Malha cheia</span>
+        <span class="chip" data-val="Ponto escama">Escama</span>
+        <span class="chip" data-val="Ponto bolinha">Bolinha</span>
+        <span class="chip" data-val="TranÃ§as">TranÃ§as</span>
+        <span class="chip" data-val="Pointelle">Pointelle</span>
+      </div>
+      <input type="text" id="ponto-custom" placeholder="Outro ponto (digitar)" style="margin-top:8px;">
+    </div>
+
+    <div class="row">
+      <div class="field">
+        <label>Modelagem</label>
+        <select id="modelagem">
+          <option value="">Selecione...</option>
+          <option>Ajustada</option>
+          <option>Regular</option>
+          <option>Reta</option>
+          <option>Ampla</option>
+          <option>Oversized</option>
+          <option>EvasÃª</option>
+          <option>AssimÃ©trica</option>
+        </select>
+      </div>
+      <div class="field">
+        <label>Comprimento <span class="hint">(se aplicÃ¡vel)</span></label>
+        <select id="comprimento">
+          <option value="">Selecione...</option>
+          <option>Curto</option>
+          <option>Regular</option>
+          <option>Midi</option>
+          <option>Longo</option>
+          <option>Cropped</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="field">
+        <label>Fechamento <span class="hint">(se aplicÃ¡vel)</span></label>
+        <select id="fechamento">
+          <option value="">Nenhum / Aberto</option>
+          <option>BotÃµes</option>
+          <option>BotÃµes contrastantes</option>
+          <option>BotÃµes de madeira</option>
+          <option>ZÃ­per</option>
+          <option>ZÃ­per invisÃ­vel</option>
+          <option>AmarraÃ§Ã£o</option>
+          <option>ElÃ¡stico</option>
+        </select>
+      </div>
+      <div class="field">
+        <label>ConstruÃ§Ã£o <span class="hint">(se aplicÃ¡vel)</span></label>
+        <select id="construcao">
+          <option value="">Tradicional</option>
+          <option>3D sem costura</option>
+          <option>Seamless</option>
+          <option>Dupla face</option>
+        </select>
+      </div>
+    </div>
+  </div>
+
+  <!-- DETALHES ESPECIAIS -->
+  <div class="section">
+    <div class="section-title">Detalhes Especiais</div>
+    <div class="field">
+      <label>Detalhes adicionais <span class="hint">(franjas, bolsos, recortes, bordados, etc.)</span></label>
+      <textarea id="detalhes" placeholder="Ex: Franjas na barra, bolsos laterais embutidos, costuras aparentes"></textarea>
+    </div>
+    <div class="row">
+      <div class="field">
+        <label>Cuidados</label>
+        <select id="cuidados">
+          <option value="">Selecione...</option>
+          <option>Lavagem Ã  mÃ¡quina</option>
+          <option>Lavagem Ã  mÃ£o</option>
+          <option>Lavagem a seco</option>
+          <option>Lavagem delicada</option>
+        </select>
+      </div>
+      <div class="field">
+        <label>Origem <span class="hint">(opcional)</span></label>
+        <input type="text" id="origem" placeholder="Ex: Brasil, feito Ã  mÃ£o">
+      </div>
+    </div>
+  </div>
+
+  <!-- FOTO DO PRODUTO -->
+  <div class="section">
+    <div class="section-title">Foto do Produto <span style="font-weight:300; text-transform:none; letter-spacing:0; color:#aaa;">(opcional)</span></div>
+    <div class="photo-drop" id="photo-drop" onclick="document.getElementById('photo-input').click()">
+      <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#999" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/>
+      </svg>
+      <div class="drop-text">Arraste fotos aqui ou <strong>clique para selecionar</strong></div>
+      <div class="drop-hint">JPG, PNG ou WEBP â atÃ© 5 fotos</div>
+      <input type="file" id="photo-input" accept="image/*" multiple style="display:none;" onchange="handleFiles(this.files)">
+    </div>
+    <div class="photo-preview-grid" id="photo-grid"></div>
+  </div>
+
+  <!-- CONTEXTO SEO -->
+  <div class="section" id="seo-section" style="display:none;">
+    <div class="section-title">Contexto SEO</div>
+    <div class="field">
+      <label>Diferencial principal para busca <span class="hint">(o que a cliente buscaria no Google)</span></label>
+      <input type="text" id="seo-diff" placeholder="Ex: cardigan de tricÃ´ artesanal, vestido midi canelado">
+    </div>
+    <div class="field">
+      <label>Gatilho para meta description <span class="hint">(frete grÃ¡tis, coleÃ§Ã£o nova, etc.)</span></label>
+      <input type="text" id="seo-gatilho" placeholder="Ex: Frete grÃ¡tis para todo o Brasil">
+    </div>
+    <div class="field">
+      <label>Tipo de foto principal <span class="hint">(para o alt text)</span></label>
+      <select id="foto-tipo">
+        <option value="modelo">Modelo vestindo a peÃ§a</option>
+        <option value="still">Still life / Flat lay</option>
+        <option value="detalhe">Detalhe de textura</option>
+      </select>
+    </div>
+  </div>
+
+  <!-- NOTAS -->
+  <div class="section">
+    <div class="section-title">ObservaÃ§Ãµes</div>
+    <div class="field">
+      <label>Notas adicionais <span class="hint">(contexto, inspiraÃ§Ã£o, o que mais quiser dizer)</span></label>
+      <textarea id="notas" placeholder="Ex: Essa peÃ§a Ã© o carro-chefe da coleÃ§Ã£o, quero um gancho especial..."></textarea>
+    </div>
+  </div>
+
+  <!-- ACTIONS -->
+  <div class="actions">
+    <button class="btn btn-primary" id="btn-enviar" onclick="enviarFormulario()">Enviar EspecificaÃ§Ãµes</button>
+    <button class="btn btn-secondary" onclick="gerarPrompt()">Gerar Prompt</button>
+    <button class="btn btn-secondary" onclick="limpar()">Limpar</button>
+  </div>
+
+  <!-- OUTPUT -->
+  <div class="output-area" id="output">
+    <div class="section-title">Prompt Gerado â Cole no Claude</div>
+    <pre id="output-text"></pre>
+    <button class="copy-btn" onclick="copiar(this)">Copiar para a Ãrea de TransferÃªncia</button>
+    <div class="counter" id="char-count"></div>
+  </div>
+
+</div>
+
+<!-- SUCCESS TOAST -->
+<div class="toast" id="toast-success">
+  <div class="toast-box">
+    <div class="toast-icon">
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M20 6L9 17l-5-5"/>
+      </svg>
+    </div>
+    <h3>Enviado com sucesso!</h3>
+    <p>As especificaÃ§Ãµes foram salvas na planilha. VocÃª pode preencher uma nova peÃ§a ou fechar esta pÃ¡gina.</p>
+    <button class="toast-close" onclick="fecharToast()">OK</button>
+  </div>
+</div>
+
+<!-- ERROR TOAST -->
+<div class="toast" id="toast-error">
+  <div class="toast-box">
+    <div class="toast-icon" style="background:#ffebee;">
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#f44336" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="12" cy="12" r="10"/><path d="m15 9-6 6M9 9l6 6"/>
+      </svg>
+    </div>
+    <h3>Erro ao enviar</h3>
+    <p id="error-msg">Verifique sua conexÃ£o e tente novamente.</p>
+    <button class="toast-close" onclick="document.getElementById('toast-error').classList.remove('visible')">Tentar novamente</button>
+  </div>
+</div>
+
+<script>
+// =====================================================
+// CONFIGURAÃÃO â Cole aqui a URL do seu Google Apps Script
+// =====================================================
+const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyiSbKCnoo1iZiCVvbNW4B30VeKNNU28FtRS09qKFXCzxWRJY2EbVzYLtkiADOVkalFwA/exec';
+// =====================================================
+
+let currentMode = 'editorial';
+let uploadedPhotos = [];
+
+const modeDescs = {
+  editorial: 'ParÃ¡grafo editorial sensorial + linha tÃ©cnica + bullets. Tom de curadoria COS.',
+  tecnico: 'DescriÃ§Ã£o curta e objetiva (~80 chars). Sem emoÃ§Ã£o. Estilo ficha tÃ©cnica Zara.',
+  completo: '7 campos SEO (tÃ­tulo, meta, curta, editorial, tags, alt text). Tom COS editorial. Para VTEX/Shopify.',
+  'tecnico-seo': '7 campos SEO (tÃ­tulo, meta, curta, tÃ©cnica Zara, tags, alt text). Tom objetivo e direto. Para VTEX/Shopify.'
+};
+
+const modeLabels = {
+  editorial: 'Modo Editorial (COS)',
+  tecnico: 'Modo TÃ©cnico (Zara)',
+  completo: 'Modo Completo (SEO + Editorial para VTEX/Shopify)',
+  'tecnico-seo': 'Modo TÃ©cnico + SEO (Zara + SEO para VTEX/Shopify)'
+};
+
+function setMode(mode, btn) {
+  currentMode = mode;
+  document.querySelectorAll('.mode-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById('mode-desc').textContent = modeDescs[mode];
+  document.getElementById('seo-section').style.display = (mode === 'completo' || mode === 'tecnico-seo') ? 'block' : 'none';
+}
+
+// Chip selection
+document.querySelectorAll('.chips').forEach(container => {
+  container.querySelectorAll('.chip').forEach(chip => {
+    chip.addEventListener('click', () => chip.classList.toggle('selected'));
+  });
+});
+
+function getSelectedChips(containerId) {
+  return Array.from(document.querySelectorAll(`#${containerId} .chip.selected`)).map(c => c.dataset.val);
+}
+
+function val(id) {
+  const el = document.getElementById(id);
+  return el ? el.value.trim() : '';
+}
+
+function coletarDados() {
+  const golaChips = getSelectedChips('gola-chips');
+  const golaCustom = val('gola-custom');
+  const gola = [...golaChips, ...(golaCustom ? [golaCustom] : [])].join(', ');
+
+  const mangaChips = getSelectedChips('manga-chips');
+  const manga = mangaChips.join(', ');
+
+  const pontoChips = getSelectedChips('ponto-chips');
+  const pontoCustom = val('ponto-custom');
+  const ponto = [...pontoChips, ...(pontoCustom ? [pontoCustom] : [])].join(', ');
+
+  const photoNames = uploadedPhotos.filter(p => p !== null).map(p => p.name).join(', ');
+
+  return {
+    timestamp: new Date().toISOString(),
+    preenchido_por: val('preenchido-por'),
+    modo: currentMode,
+    nome: val('nome'),
+    codigo: val('codigo'),
+    tipo: val('tipo'),
+    colecao: val('colecao'),
+    cor: val('cor'),
+    cores: val('cores'),
+    composicao: val('composicao'),
+    fio: val('fio'),
+    gola_decote: gola,
+    manga: manga,
+    ponto: ponto,
+    modelagem: val('modelagem'),
+    comprimento: val('comprimento'),
+    fechamento: val('fechamento'),
+    construcao: val('construcao'),
+    detalhes: val('detalhes'),
+    cuidados: val('cuidados'),
+    origem: val('origem'),
+    seo_diferencial: val('seo-diff'),
+    seo_gatilho: val('seo-gatilho'),
+    foto_tipo: val('foto-tipo'),
+    fotos: photoNames,
+    notas: val('notas')
+  };
+}
+
+function validar() {
+  const erros = [];
+  if (!val('preenchido-por')) erros.push('nome de quem estÃ¡ preenchendo');
+  if (!val('nome')) erros.push('nome da peÃ§a');
+  if (!val('tipo')) erros.push('tipo da peÃ§a');
+  if (!val('composicao')) erros.push('composiÃ§Ã£o');
+  if (erros.length > 0) {
+    alert('Preencha os campos obrigatÃ³rios:\nâ¢ ' + erros.join('\nâ¢ '));
+    return false;
+  }
+  return true;
+}
+
+async function enviarFormulario() {
+  if (!validar()) return;
+
+  if (GOOGLE_SCRIPT_URL === 'COLE_SUA_URL_AQUI_PLACEHOLDER') {
+    alert('Configure a URL do Google Apps Script no cÃ³digo.\nVeja o guia de configuraÃ§Ã£o.');
+    return;
+  }
+
+  const btn = document.getElementById('btn-enviar');
+  btn.disabled = true;
+  btn.innerHTML = '<span class="spinner"></span>Enviando...';
+
+  const dados = coletarDados();
+
+  try {
+    const response = await fetch(GOOGLE_SCRIPT_URL, {
+      method: 'POST',
+      mode: 'no-cors',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(dados)
+    });
+
+    // no-cors always returns opaque response, so we assume success
+    document.getElementById('toast-success').classList.add('visible');
+  } catch (err) {
+    document.getElementById('error-msg').textContent = 'Erro: ' + err.message;
+    document.getElementById('toast-error').classList.add('visible');
+  } finally {
+    btn.disabled = false;
+    btn.innerHTML = 'Enviar EspecificaÃ§Ãµes';
+  }
+}
+
+function fecharToast() {
+  document.getElementById('toast-success').classList.remove('visible');
+  limpar();
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function gerarPrompt() {
+  const dados = coletarDados();
+
+  let lines = [];
+  lines.push(`Escreva a descriÃ§Ã£o de produto no ${modeLabels[currentMode]}:`);
+  lines.push('');
+
+  if (dados.nome || dados.codigo) {
+    let id = [dados.nome, dados.codigo].filter(Boolean);
+    lines.push(`PeÃ§a: ${id.join(' ')}`);
+  }
+  if (dados.tipo) lines.push(`Tipo: ${dados.tipo}`);
+  if (dados.colecao) lines.push(`ColeÃ§Ã£o: ${dados.colecao}`);
+  if (dados.cor) lines.push(`Cor: ${dados.cor}`);
+  if (dados.cores) lines.push(`Cores disponÃ­veis: ${dados.cores}`);
+  if (dados.composicao) lines.push(`ComposiÃ§Ã£o: ${dados.composicao}`);
+  if (dados.fio) lines.push(`Fio: ${dados.fio}`);
+  if (dados.gola_decote) lines.push(`Gola/Decote: ${dados.gola_decote}`);
+  if (dados.manga) lines.push(`Manga: ${dados.manga}`);
+  if (dados.ponto) lines.push(`Ponto: ${dados.ponto}`);
+  if (dados.modelagem) lines.push(`Modelagem: ${dados.modelagem}`);
+  if (dados.comprimento) lines.push(`Comprimento: ${dados.comprimento}`);
+  if (dados.fechamento) lines.push(`Fechamento: ${dados.fechamento}`);
+  if (dados.construcao) lines.push(`ConstruÃ§Ã£o: ${dados.construcao}`);
+  if (dados.detalhes) lines.push(`Detalhes: ${dados.detalhes}`);
+  if (dados.cuidados) lines.push(`Cuidados: ${dados.cuidados}`);
+  if (dados.origem) lines.push(`Origem: ${dados.origem}`);
+
+  if (currentMode === 'completo' || currentMode === 'tecnico-seo') {
+    if (dados.seo_diferencial) lines.push(`Diferencial SEO: ${dados.seo_diferencial}`);
+    if (dados.seo_gatilho) lines.push(`Gatilho meta description: ${dados.seo_gatilho}`);
+    if (dados.foto_tipo) {
+      const fotoLabels = { modelo: 'Foto com modelo', still: 'Still life / Flat lay', detalhe: 'Detalhe de textura' };
+      lines.push(`Tipo de foto: ${fotoLabels[dados.foto_tipo]}`);
+    }
+  }
+
+  if (dados.fotos) {
+    lines.push(`Fotos: ${dados.fotos}`);
+    lines.push('Nota: cole as fotos junto com este prompt no Claude.');
+  }
+
+  if (dados.notas) {
+    lines.push('');
+    lines.push(`Notas: ${dados.notas}`);
+  }
+
+  const text = lines.join('\n');
+  document.getElementById('output-text').textContent = text;
+  document.getElementById('char-count').textContent = `${text.length} caracteres`;
+  document.getElementById('output').classList.add('visible');
+  document.getElementById('output').scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+function copiar(btn) {
+  const text = document.getElementById('output-text').textContent;
+  navigator.clipboard.writeText(text).then(() => {
+    btn.textContent = 'Copiado!';
+    btn.classList.add('copied');
+    setTimeout(() => {
+      btn.textContent = 'Copiar para a Ãrea de TransferÃªncia';
+      btn.classList.remove('copied');
+    }, 2000);
+  });
+}
+
+// Photo handling
+const dropZone = document.getElementById('photo-drop');
+dropZone.addEventListener('dragover', (e) => { e.preventDefault(); dropZone.classList.add('dragover'); });
+dropZone.addEventListener('dragleave', () => dropZone.classList.remove('dragover'));
+dropZone.addEventListener('drop', (e) => {
+  e.preventDefault();
+  dropZone.classList.remove('dragover');
+  handleFiles(e.dataTransfer.files);
+});
+
+function handleFiles(files) {
+  const grid = document.getElementById('photo-grid');
+  Array.from(files).forEach((file) => {
+    if (uploadedPhotos.length >= 5) return;
+    if (!file.type.startsWith('image/')) return;
+    const reader = new FileReader();
+    reader.onload = (e) => {
+      const idx = uploadedPhotos.length;
+      uploadedPhotos.push({ name: file.name, dataUrl: e.target.result });
+      const card = document.createElement('div');
+      card.className = 'photo-card';
+      card.dataset.idx = idx;
+      card.innerHTML = `
+        <img src="${e.target.result}" alt="${file.name}">
+        <button class="photo-remove" onclick="removePhoto(${idx})">&times;</button>
+        <div class="photo-name">${file.name}</div>
+      `;
+      grid.appendChild(card);
+    };
+    reader.readAsDataURL(file);
+  });
+}
+
+function removePhoto(idx) {
+  uploadedPhotos[idx] = null;
+  const card = document.querySelector(`.photo-card[data-idx="${idx}"]`);
+  if (card) card.remove();
+}
+
+function limpar() {
+  document.querySelectorAll('input[type="text"], textarea').forEach(el => el.value = '');
+  document.querySelectorAll('select').forEach(el => el.selectedIndex = 0);
+  document.querySelectorAll('.chip.selected').forEach(el => el.classList.remove('selected'));
+  document.getElementById('output').classList.remove('visible');
+  document.getElementById('photo-grid').innerHTML = '';
+  document.getElementById('photo-input').value = '';
+  uploadedPhotos = [];
+}
+</script>
+</body>
+</html>
