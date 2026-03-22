@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Anselmi â FormulÃ¡rio de EspecificaÃ§Ãµes</title>
+<title>Anselmi — Formulário de Especificações</title>
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap');
 
@@ -434,16 +434,16 @@
 
 <div class="header">
   <h1>ANSELMI</h1>
-  <p>FormulÃ¡rio de EspecificaÃ§Ãµes de Produto</p>
+  <p>Formulário de Especificações de Produto</p>
 </div>
 
 <div class="container">
 
   <div class="intro">
-    <p>Preencha as especificaÃ§Ãµes da peÃ§a abaixo. Os dados serÃ£o salvos automaticamente no banco de dados da equipe. VocÃª tambÃ©m pode gerar um prompt formatado para colar no Claude.</p>
+    <p>Preencha as especificações da peça abaixo. Os dados serão salvos automaticamente no banco de dados da equipe. Você também pode gerar um prompt formatado para colar no Claude.</p>
   </div>
 
-  <!-- QUEM ESTÃ PREENCHENDO -->
+  <!-- QUEM ESTÁ PREENCHENDO -->
   <div class="section">
     <div class="person-field">
       <label>Preenchido por <span class="required">*</span></label>
@@ -453,43 +453,43 @@
 
   <!-- MODE SELECTOR -->
   <div class="section">
-    <div class="section-title">Modo de DescriÃ§Ã£o</div>
+    <div class="section-title">Modo de Descrição</div>
     <div class="mode-toggle">
       <button class="mode-btn active" onclick="setMode('editorial', this)">Editorial (COS)</button>
-      <button class="mode-btn" onclick="setMode('tecnico', this)">TÃ©cnico (Zara)</button>
+      <button class="mode-btn" onclick="setMode('tecnico', this)">Técnico (Zara)</button>
       <button class="mode-btn" onclick="setMode('completo', this)">Completo <span class="mode-badge seo">SEO</span></button>
-      <button class="mode-btn" onclick="setMode('tecnico-seo', this)">TÃ©cnico + SEO <span class="mode-badge seo">SEO</span></button>
+      <button class="mode-btn" onclick="setMode('tecnico-seo', this)">Técnico + SEO <span class="mode-badge seo">SEO</span></button>
     </div>
     <p style="font-size:12px; color:#888; line-height:1.5;" id="mode-desc">
-      ParÃ¡grafo editorial sensorial + linha tÃ©cnica + bullets. Tom de curadoria COS.
+      Parágrafo editorial sensorial + linha técnica + bullets. Tom de curadoria COS.
     </p>
   </div>
 
-  <!-- IDENTIFICAÃÃO -->
+  <!-- IDENTIFICAÇÃO -->
   <div class="section">
-    <div class="section-title">IdentificaÃ§Ã£o</div>
+    <div class="section-title">Identificação</div>
     <div class="row">
       <div class="field">
-        <label>Nome da PeÃ§a <span class="required">*</span></label>
+        <label>Nome da Peça <span class="required">*</span></label>
         <input type="text" id="nome" placeholder="Ex: Cardigan Savoia">
       </div>
       <div class="field">
-        <label>CÃ³digo / ReferÃªncia</label>
+        <label>Código / Referência</label>
         <input type="text" id="codigo" placeholder="Ex: 16164">
       </div>
     </div>
     <div class="row">
       <div class="field">
-        <label>Tipo da PeÃ§a <span class="required">*</span></label>
+        <label>Tipo da Peça <span class="required">*</span></label>
         <select id="tipo">
           <option value="">Selecione...</option>
           <option>Cardigan</option>
-          <option>SuÃ©ter</option>
+          <option>Suéter</option>
           <option>Blusa</option>
           <option>Maxipull</option>
           <option>Vestido</option>
           <option>Saia</option>
-          <option>CalÃ§a</option>
+          <option>Calça</option>
           <option>Colete</option>
           <option>Pelerine</option>
           <option>Capa</option>
@@ -500,7 +500,7 @@
         </select>
       </div>
       <div class="field">
-        <label>ColeÃ§Ã£o <span class="hint">(opcional)</span></label>
+        <label>Coleção <span class="hint">(opcional)</span></label>
         <input type="text" id="colecao" placeholder="Ex: Maestra, Inverno 2026">
       </div>
     </div>
@@ -515,30 +515,30 @@
         <input type="text" id="cor" placeholder="Ex: off-white, preto, ocre">
       </div>
       <div class="field">
-        <label>Cores DisponÃ­veis <span class="hint">(opcional)</span></label>
+        <label>Cores Disponíveis <span class="hint">(opcional)</span></label>
         <input type="text" id="cores" placeholder="Ex: preto, cru, verde">
       </div>
     </div>
     <div class="field">
-      <label>ComposiÃ§Ã£o <span class="required">*</span></label>
-      <input type="text" id="composicao" placeholder="Ex: 70% algodÃ£o, 30% poliamida">
+      <label>Composição <span class="required">*</span></label>
+      <input type="text" id="composicao" placeholder="Ex: 70% algodão, 30% poliamida">
     </div>
     <div class="field">
-      <label>Fio Especial <span class="hint">(se aplicÃ¡vel)</span></label>
+      <label>Fio Especial <span class="hint">(se aplicável)</span></label>
       <input type="text" id="fio" placeholder="Ex: Fio Londres, Fio Italiano">
     </div>
   </div>
 
-  <!-- DESIGN & CONSTRUÃÃO -->
+  <!-- DESIGN & CONSTRUÇÃO -->
   <div class="section">
-    <div class="section-title">Design & ConstruÃ§Ã£o</div>
+    <div class="section-title">Design & Construção</div>
 
     <div class="field">
       <label>Gola / Decote</label>
       <div class="chips" id="gola-chips">
         <span class="chip" data-val="Gola alta">Gola alta</span>
-        <span class="chip" data-val="Gola chaminÃ©">Gola chaminÃ©</span>
-        <span class="chip" data-val="Gola rolÃª">Gola rolÃª</span>
+        <span class="chip" data-val="Gola chaminé">Gola chaminé</span>
+        <span class="chip" data-val="Gola rolê">Gola rolê</span>
         <span class="chip" data-val="Gola polo">Gola polo</span>
         <span class="chip" data-val="Decote V">Decote V</span>
         <span class="chip" data-val="Decote careca">Decote careca</span>
@@ -562,22 +562,22 @@
         <span class="chip" data-val="Manga kimono">Kimono</span>
         <span class="chip" data-val="Manga balloon">Balloon</span>
         <span class="chip" data-val="Sem manga">Sem manga</span>
-        <span class="chip" data-val="AlÃ§a">AlÃ§a</span>
+        <span class="chip" data-val="Alça">Alça</span>
       </div>
     </div>
 
     <div class="field">
-      <label>Ponto de TricÃ´</label>
+      <label>Ponto de Tricô</label>
       <div class="chips" id="ponto-chips">
-        <span class="chip" data-val="Ponto pÃ©rola">PÃ©rola</span>
+        <span class="chip" data-val="Ponto pérola">Pérola</span>
         <span class="chip" data-val="Canelado">Canelado</span>
         <span class="chip" data-val="Meia-malha">Meia-malha</span>
         <span class="chip" data-val="Ponto links">Links</span>
-        <span class="chip" data-val="TricÃ´ 3D">3D</span>
+        <span class="chip" data-val="Tricô 3D">3D</span>
         <span class="chip" data-val="Malha cheia">Malha cheia</span>
         <span class="chip" data-val="Ponto escama">Escama</span>
         <span class="chip" data-val="Ponto bolinha">Bolinha</span>
-        <span class="chip" data-val="TranÃ§as">TranÃ§as</span>
+        <span class="chip" data-val="Tranças">Tranças</span>
         <span class="chip" data-val="Pointelle">Pointelle</span>
       </div>
       <input type="text" id="ponto-custom" placeholder="Outro ponto (digitar)" style="margin-top:8px;">
@@ -593,12 +593,12 @@
           <option>Reta</option>
           <option>Ampla</option>
           <option>Oversized</option>
-          <option>EvasÃª</option>
-          <option>AssimÃ©trica</option>
+          <option>Evasê</option>
+          <option>Assimétrica</option>
         </select>
       </div>
       <div class="field">
-        <label>Comprimento <span class="hint">(se aplicÃ¡vel)</span></label>
+        <label>Comprimento <span class="hint">(se aplicável)</span></label>
         <select id="comprimento">
           <option value="">Selecione...</option>
           <option>Curto</option>
@@ -612,20 +612,20 @@
 
     <div class="row">
       <div class="field">
-        <label>Fechamento <span class="hint">(se aplicÃ¡vel)</span></label>
+        <label>Fechamento <span class="hint">(se aplicável)</span></label>
         <select id="fechamento">
           <option value="">Nenhum / Aberto</option>
-          <option>BotÃµes</option>
-          <option>BotÃµes contrastantes</option>
-          <option>BotÃµes de madeira</option>
-          <option>ZÃ­per</option>
-          <option>ZÃ­per invisÃ­vel</option>
-          <option>AmarraÃ§Ã£o</option>
-          <option>ElÃ¡stico</option>
+          <option>Botões</option>
+          <option>Botões contrastantes</option>
+          <option>Botões de madeira</option>
+          <option>Zíper</option>
+          <option>Zíper invisível</option>
+          <option>Amarração</option>
+          <option>Elástico</option>
         </select>
       </div>
       <div class="field">
-        <label>ConstruÃ§Ã£o <span class="hint">(se aplicÃ¡vel)</span></label>
+        <label>Construção <span class="hint">(se aplicável)</span></label>
         <select id="construcao">
           <option value="">Tradicional</option>
           <option>3D sem costura</option>
@@ -648,15 +648,15 @@
         <label>Cuidados</label>
         <select id="cuidados">
           <option value="">Selecione...</option>
-          <option>Lavagem Ã  mÃ¡quina</option>
-          <option>Lavagem Ã  mÃ£o</option>
+          <option>Lavagem à máquina</option>
+          <option>Lavagem à mão</option>
           <option>Lavagem a seco</option>
           <option>Lavagem delicada</option>
         </select>
       </div>
       <div class="field">
         <label>Origem <span class="hint">(opcional)</span></label>
-        <input type="text" id="origem" placeholder="Ex: Brasil, feito Ã  mÃ£o">
+        <input type="text" id="origem" placeholder="Ex: Brasil, feito à mão">
       </div>
     </div>
   </div>
@@ -669,7 +669,7 @@
         <rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/>
       </svg>
       <div class="drop-text">Arraste fotos aqui ou <strong>clique para selecionar</strong></div>
-      <div class="drop-hint">JPG, PNG ou WEBP â atÃ© 5 fotos</div>
+      <div class="drop-hint">JPG, PNG ou WEBP — até 5 fotos</div>
       <input type="file" id="photo-input" accept="image/*" multiple style="display:none;" onchange="handleFiles(this.files)">
     </div>
     <div class="photo-preview-grid" id="photo-grid"></div>
@@ -680,16 +680,16 @@
     <div class="section-title">Contexto SEO</div>
     <div class="field">
       <label>Diferencial principal para busca <span class="hint">(o que a cliente buscaria no Google)</span></label>
-      <input type="text" id="seo-diff" placeholder="Ex: cardigan de tricÃ´ artesanal, vestido midi canelado">
+      <input type="text" id="seo-diff" placeholder="Ex: cardigan de tricô artesanal, vestido midi canelado">
     </div>
     <div class="field">
-      <label>Gatilho para meta description <span class="hint">(frete grÃ¡tis, coleÃ§Ã£o nova, etc.)</span></label>
-      <input type="text" id="seo-gatilho" placeholder="Ex: Frete grÃ¡tis para todo o Brasil">
+      <label>Gatilho para meta description <span class="hint">(frete grátis, coleção nova, etc.)</span></label>
+      <input type="text" id="seo-gatilho" placeholder="Ex: Frete grátis para todo o Brasil">
     </div>
     <div class="field">
       <label>Tipo de foto principal <span class="hint">(para o alt text)</span></label>
       <select id="foto-tipo">
-        <option value="modelo">Modelo vestindo a peÃ§a</option>
+        <option value="modelo">Modelo vestindo a peça</option>
         <option value="still">Still life / Flat lay</option>
         <option value="detalhe">Detalhe de textura</option>
       </select>
@@ -698,25 +698,25 @@
 
   <!-- NOTAS -->
   <div class="section">
-    <div class="section-title">ObservaÃ§Ãµes</div>
+    <div class="section-title">Observações</div>
     <div class="field">
-      <label>Notas adicionais <span class="hint">(contexto, inspiraÃ§Ã£o, o que mais quiser dizer)</span></label>
-      <textarea id="notas" placeholder="Ex: Essa peÃ§a Ã© o carro-chefe da coleÃ§Ã£o, quero um gancho especial..."></textarea>
+      <label>Notas adicionais <span class="hint">(contexto, inspiração, o que mais quiser dizer)</span></label>
+      <textarea id="notas" placeholder="Ex: Essa peça é o carro-chefe da coleção, quero um gancho especial..."></textarea>
     </div>
   </div>
 
   <!-- ACTIONS -->
   <div class="actions">
-    <button class="btn btn-primary" id="btn-enviar" onclick="enviarFormulario()">Enviar EspecificaÃ§Ãµes</button>
+    <button class="btn btn-primary" id="btn-enviar" onclick="enviarFormulario()">Enviar Especificações</button>
     <button class="btn btn-secondary" onclick="gerarPrompt()">Gerar Prompt</button>
     <button class="btn btn-secondary" onclick="limpar()">Limpar</button>
   </div>
 
   <!-- OUTPUT -->
   <div class="output-area" id="output">
-    <div class="section-title">Prompt Gerado â Cole no Claude</div>
+    <div class="section-title">Prompt Gerado — Cole no Claude</div>
     <pre id="output-text"></pre>
-    <button class="copy-btn" onclick="copiar(this)">Copiar para a Ãrea de TransferÃªncia</button>
+    <button class="copy-btn" onclick="copiar(this)">Copiar para a Área de Transferência</button>
     <div class="counter" id="char-count"></div>
   </div>
 
@@ -731,7 +731,7 @@
       </svg>
     </div>
     <h3>Enviado com sucesso!</h3>
-    <p>As especificaÃ§Ãµes foram salvas na planilha. VocÃª pode preencher uma nova peÃ§a ou fechar esta pÃ¡gina.</p>
+    <p>As especificações foram salvas na planilha. Você pode preencher uma nova peça ou fechar esta página.</p>
     <button class="toast-close" onclick="fecharToast()">OK</button>
   </div>
 </div>
@@ -745,14 +745,14 @@
       </svg>
     </div>
     <h3>Erro ao enviar</h3>
-    <p id="error-msg">Verifique sua conexÃ£o e tente novamente.</p>
+    <p id="error-msg">Verifique sua conexão e tente novamente.</p>
     <button class="toast-close" onclick="document.getElementById('toast-error').classList.remove('visible')">Tentar novamente</button>
   </div>
 </div>
 
 <script>
 // =====================================================
-// CONFIGURAÃÃO â Cole aqui a URL do seu Google Apps Script
+// CONFIGURAÇÃO — Cole aqui a URL do seu Google Apps Script
 // =====================================================
 const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyiSbKCnoo1iZiCVvbNW4B30VeKNNU28FtRS09qKFXCzxWRJY2EbVzYLtkiADOVkalFwA/exec';
 // =====================================================
@@ -761,17 +761,17 @@ let currentMode = 'editorial';
 let uploadedPhotos = [];
 
 const modeDescs = {
-  editorial: 'ParÃ¡grafo editorial sensorial + linha tÃ©cnica + bullets. Tom de curadoria COS.',
-  tecnico: 'DescriÃ§Ã£o curta e objetiva (~80 chars). Sem emoÃ§Ã£o. Estilo ficha tÃ©cnica Zara.',
-  completo: '7 campos SEO (tÃ­tulo, meta, curta, editorial, tags, alt text). Tom COS editorial. Para VTEX/Shopify.',
-  'tecnico-seo': '7 campos SEO (tÃ­tulo, meta, curta, tÃ©cnica Zara, tags, alt text). Tom objetivo e direto. Para VTEX/Shopify.'
+  editorial: 'Parágrafo editorial sensorial + linha técnica + bullets. Tom de curadoria COS.',
+  tecnico: 'Descrição curta e objetiva (~80 chars). Sem emoção. Estilo ficha técnica Zara.',
+  completo: '7 campos SEO (título, meta, curta, editorial, tags, alt text). Tom COS editorial. Para VTEX/Shopify.',
+  'tecnico-seo': '7 campos SEO (título, meta, curta, técnica Zara, tags, alt text). Tom objetivo e direto. Para VTEX/Shopify.'
 };
 
 const modeLabels = {
   editorial: 'Modo Editorial (COS)',
-  tecnico: 'Modo TÃ©cnico (Zara)',
+  tecnico: 'Modo Técnico (Zara)',
   completo: 'Modo Completo (SEO + Editorial para VTEX/Shopify)',
-  'tecnico-seo': 'Modo TÃ©cnico + SEO (Zara + SEO para VTEX/Shopify)'
+  'tecnico-seo': 'Modo Técnico + SEO (Zara + SEO para VTEX/Shopify)'
 };
 
 function setMode(mode, btn) {
@@ -844,12 +844,12 @@ function coletarDados() {
 
 function validar() {
   const erros = [];
-  if (!val('preenchido-por')) erros.push('nome de quem estÃ¡ preenchendo');
-  if (!val('nome')) erros.push('nome da peÃ§a');
-  if (!val('tipo')) erros.push('tipo da peÃ§a');
-  if (!val('composicao')) erros.push('composiÃ§Ã£o');
+  if (!val('preenchido-por')) erros.push('nome de quem está preenchendo');
+  if (!val('nome')) erros.push('nome da peça');
+  if (!val('tipo')) erros.push('tipo da peça');
+  if (!val('composicao')) erros.push('composição');
   if (erros.length > 0) {
-    alert('Preencha os campos obrigatÃ³rios:\nâ¢ ' + erros.join('\nâ¢ '));
+    alert('Preencha os campos obrigatórios:\n• ' + erros.join('\n• '));
     return false;
   }
   return true;
@@ -859,7 +859,7 @@ async function enviarFormulario() {
   if (!validar()) return;
 
   if (GOOGLE_SCRIPT_URL === 'COLE_SUA_URL_AQUI_PLACEHOLDER') {
-    alert('Configure a URL do Google Apps Script no cÃ³digo.\nVeja o guia de configuraÃ§Ã£o.');
+    alert('Configure a URL do Google Apps Script no código.\nVeja o guia de configuração.');
     return;
   }
 
@@ -884,7 +884,7 @@ async function enviarFormulario() {
     document.getElementById('toast-error').classList.add('visible');
   } finally {
     btn.disabled = false;
-    btn.innerHTML = 'Enviar EspecificaÃ§Ãµes';
+    btn.innerHTML = 'Enviar Especificações';
   }
 }
 
@@ -898,18 +898,18 @@ function gerarPrompt() {
   const dados = coletarDados();
 
   let lines = [];
-  lines.push(`Escreva a descriÃ§Ã£o de produto no ${modeLabels[currentMode]}:`);
+  lines.push(`Escreva a descrição de produto no ${modeLabels[currentMode]}:`);
   lines.push('');
 
   if (dados.nome || dados.codigo) {
     let id = [dados.nome, dados.codigo].filter(Boolean);
-    lines.push(`PeÃ§a: ${id.join(' ')}`);
+    lines.push(`Peça: ${id.join(' ')}`);
   }
   if (dados.tipo) lines.push(`Tipo: ${dados.tipo}`);
-  if (dados.colecao) lines.push(`ColeÃ§Ã£o: ${dados.colecao}`);
+  if (dados.colecao) lines.push(`Coleção: ${dados.colecao}`);
   if (dados.cor) lines.push(`Cor: ${dados.cor}`);
-  if (dados.cores) lines.push(`Cores disponÃ­veis: ${dados.cores}`);
-  if (dados.composicao) lines.push(`ComposiÃ§Ã£o: ${dados.composicao}`);
+  if (dados.cores) lines.push(`Cores disponíveis: ${dados.cores}`);
+  if (dados.composicao) lines.push(`Composição: ${dados.composicao}`);
   if (dados.fio) lines.push(`Fio: ${dados.fio}`);
   if (dados.gola_decote) lines.push(`Gola/Decote: ${dados.gola_decote}`);
   if (dados.manga) lines.push(`Manga: ${dados.manga}`);
@@ -917,7 +917,7 @@ function gerarPrompt() {
   if (dados.modelagem) lines.push(`Modelagem: ${dados.modelagem}`);
   if (dados.comprimento) lines.push(`Comprimento: ${dados.comprimento}`);
   if (dados.fechamento) lines.push(`Fechamento: ${dados.fechamento}`);
-  if (dados.construcao) lines.push(`ConstruÃ§Ã£o: ${dados.construcao}`);
+  if (dados.construcao) lines.push(`Construção: ${dados.construcao}`);
   if (dados.detalhes) lines.push(`Detalhes: ${dados.detalhes}`);
   if (dados.cuidados) lines.push(`Cuidados: ${dados.cuidados}`);
   if (dados.origem) lines.push(`Origem: ${dados.origem}`);
@@ -954,7 +954,7 @@ function copiar(btn) {
     btn.textContent = 'Copiado!';
     btn.classList.add('copied');
     setTimeout(() => {
-      btn.textContent = 'Copiar para a Ãrea de TransferÃªncia';
+      btn.textContent = 'Copiar para a Área de Transferência';
       btn.classList.remove('copied');
     }, 2000);
   });
